@@ -2,6 +2,7 @@ package org.example.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
@@ -26,6 +27,7 @@ public class BookAppointment {
     private By day = By.xpath("//input[@placeholder='dd/mm/yyyy']");
     private By commentbox = By.id("txt_comment");
     private By submitbutton = By.id("btn-book-appointment");
+    By cnf = By.xpath("//p[@class='lead']");
 
     public BookAppointment(WebDriver driver) {
         this.driver = driver;
@@ -62,8 +64,10 @@ public class BookAppointment {
         driver.findElement(submitbutton).click();
     }
 
-    public void waitForPageLoad() {
-        wait.until(ExpectedConditions.urlContains("summary"));
+    public WebElement waitForPageLoad() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(cnf));
+
     }
 
     // Fill appointment using default data

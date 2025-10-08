@@ -3,6 +3,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.example.pages.BookAppointment;
 import org.example.pages.LoginFlow;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -40,9 +41,11 @@ public void setDriver() {
                 String url = driver.getCurrentUrl();
                 Assert.assertTrue(url.contains("appointment"), "Page not loaded");
 
-                Assert.assertTrue(url.contains("summary"), "Appointment not confirmed");
+        WebElement cnf = bookAppointmentobj.waitForPageLoad();
+        Assert.assertTrue(cnf.isDisplayed(), "Summary page did not load!");
 
-    }
+
+                  }
     @AfterMethod
     public void tearDown()
     {
