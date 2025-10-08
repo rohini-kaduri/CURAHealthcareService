@@ -36,3 +36,23 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+# IntelliJ IDEA
+
+.idea/
+out/
+*.log
+
+# Maven / Gradle
+
+.gradle/
+*.class
+
+# Operating system
+
+Thumbs.db
+
+# WebDriver binaries (optional if you store them locally)
+chromedriver
+geckodriver
+msedgedriver
