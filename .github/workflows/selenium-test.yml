@@ -1,0 +1,49 @@
+name: Selenium TestNG CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ Set up JDK 25
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 25
+
+      # 3️⃣ Set up Maven
+      - name: Set up Maven
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 25
+
+      # 4️⃣ Set up Chrome
+      - name: Set up Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      # 5️⃣ Build project
+      - name: Build Project
+        run: mvn clean compile
+
+      # 6️⃣ Run TestNG tests
+      - name: Run TestNG tests
+        run: mvn test
+
+      # 7️⃣ Upload TestNG reports
+      - name: Upload TestNG report
+        uses: actions/upload-artifact@v3
+        with:
+          name: testng-report
+          path: target/surefire-reports/
