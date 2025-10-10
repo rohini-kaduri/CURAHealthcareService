@@ -5,6 +5,7 @@
     <test name="CuraAppointmentTests">
         <classes>
             <class name="org.example.tests.CuraTestng"/>
+            <class name="org.example.runners.TestRunner"/>
         </classes>
     </test>
 
